@@ -153,6 +153,7 @@ namespace WindowsFormsApp1
             this.HitPoints.Size = new System.Drawing.Size(294, 32);
             this.HitPoints.TabIndex = 10;
             this.HitPoints.Value = 3;
+            this.HitPoints.Click += new System.EventHandler(this.HitPoints_Click);
             // 
             // button6
             // 
@@ -210,8 +211,10 @@ namespace WindowsFormsApp1
             this.pictureBox1.Location = new System.Drawing.Point(445, 218);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(539, 329);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Form1
             // 

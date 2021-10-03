@@ -24,7 +24,67 @@ namespace WindowsFormsApp1
         string playerchoice = "";
         string npc = "";
         int count = 0;
-        Random random = new Random();
+        int lives = 3;
+
+        private void randomcall()
+        {
+            int randomOne = random1.Next(1, 4);
+            if (randomOne == 1)
+            {
+                HitPoints.Text = "rock";
+                npc = "rock";
+                pictureBox1.Image = Properties.Resources.steen1;
+                livescall();
+            }
+            if (randomOne == 2)
+            {
+                HitPoints.Text = "paper";
+                npc = "paper";
+                pictureBox1.Image = Properties.Resources.paperboy;
+                livescall();
+            }
+            if (randomOne == 3)
+            {
+                HitPoints.Text = "sissors";
+                npc = "sissors";
+                pictureBox1.Image = Properties.Resources.Sissors;
+                livescall();
+            }
+        }
+
+        private void livescall()
+        {
+            if (playerchoice == "rock" && npc == "paper")
+            {
+                lives = lives - 1;
+                HitPoints.Value = lives;
+
+                // MessageBox.Show(lives.ToString());
+            }
+            if (playerchoice == "paper" && npc == "sissors")
+            {
+                lives = lives - 1;
+                HitPoints.Value = lives;
+            }
+            if (playerchoice == "sissors" && npc == "rock")
+            {
+                lives = lives - 1;
+                HitPoints.Value = lives;
+            }
+            if (lives == 0)
+            {
+                pictureBox1.BackgroundImage = Properties.Resources.Game_over;
+                label1.Hide();
+                button6.Hide();
+                button8.Hide();
+                button7.Hide();
+                HitPoints.Hide();
+
+            }
+        }
+
+
+
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -78,7 +138,6 @@ namespace WindowsFormsApp1
             lbantwoord.Text = Convert.ToString(Answer);
             lbnumberone.Text = "/";
         }
-        //TODO Fix sissors, Using + or any other it crashes
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -103,42 +162,55 @@ namespace WindowsFormsApp1
             HitPoints.Value = 3;
             pictureBox1.BackgroundImage = Properties.Resources.RockPaperSissors;
             label1.Text = "your pick";
-           
+            pictureBox1.Show();
+            label1.Show();
+            button6.Show();
+            button8.Show();
+            button7.Show();
+            HitPoints.Show();
+            HitPoints.Value = 3;
+            lives = 3;
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             //Image img = Image.FromFile("WindowsFormsApp1.Properties.Resources.steen1");
             pictureBox1.BackgroundImage = Properties.Resources.steen1;
-            HitPoints.Value = 2;
             label1.Text = "you picked" + " rock";
             playerchoice = "rock";
-            npc = "rock";
+            randomcall();
+
 
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             pictureBox1.BackgroundImage = Properties.Resources.paperboy;
-            HitPoints.Value = 1;
             label1.Text = "you picked" + " paper";
             playerchoice = "paper";
-            npc = "paper";
+            randomcall();
 
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             pictureBox1.BackgroundImage = Properties.Resources.Sissors;
-            HitPoints.Value = 0;
             label1.Text = "you picked" + " sissors";
             playerchoice = "sissors";
-            npc = "sissors";
+            randomcall();
 
-            int randomOne = random1.Next(1, 4);
+        }
 
+        private void HitPoints_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
         }
     }
 }
+
